@@ -1,31 +1,33 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
-
 package com.mycompany.myproject;
+
 import java.util.Scanner;
+
 /**
  *
  * @author New 1000 Meeza
  */
 public class Myproject {
-     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);      
-            System.out.println("Welcome, please enter available values to avoid closing the program and not completing it. Thank you");
-            System.out.println("Matrix or decimal?");
-            System.out.println("1- Matrix");
-            System.out.println("2- decimal");
-            System.out.print("Click on the track number you want [1/2]: ");
-         int track = in.nextInt();
-         if (track == 1) {
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        System.out.println("Welcome, please enter available values to avoid closing the program and not completing it. Thank you");
+        System.out.println("Matrix or decimal?");
+        System.out.println("1- Matrix");
+        System.out.println("2- decimal");
+        System.out.print("Click on the track number you want [1/2]: ");
+        int track = in.nextInt();
+        if (track == 1) {
             System.out.println("___________Matrix___________");
             Matrix();
-         } else if (track == 2) {
+        } else if (track == 2) {
             System.out.println("___________Decimal__________");
             Decimal();
-         } else {
-            System.out.println("invalid value , please try again"); 
-         }
+        } else {
+            System.out.println("invalid value , please try again");
+        }
     }
 
     public static Scanner scan() {
@@ -64,36 +66,40 @@ public class Myproject {
         System.out.print("What is the type of operation? ['+' or '-' or '*']: ");
         char operation = in.next().charAt(0);
         if (operation == '+') {
-            System.out.println("Note: To add two matrices, the number of rows in the first determinant must be equal to the number of rows in the second determinant, as well as the number of columns.");
-            System.out.println("How many matrices do you want to add?");
-            int numbers=in.nextInt(); 
+            System.out.println("Note: the number of rows in the first determinant must be equal to the number of rows in the second determinant, as well as the number of columns.");
+            System.out.print("How many matrices do you want to add?: ");
+            int counter = in.nextInt();
             System.out.print("row: ");
             int row = in.nextInt();
             System.out.print("column: ");
-            int column = in.nextInt(); 
-            int   result[][]=new int[row][column];
-           for(int c=0;c<numbers;c++){
-            System.out.println("______"+"Matrix("+(c+1)+")______");
-          int Matrix[][]= GetMatrix(row,column);
-         result = CalculatorMatrix.add(Matrix,numbers);
-           }
-          PrintMatrix(result);
+            int column = in.nextInt();
+            System.out.println("______Matrix1______");
+            int result[][] = new int[row][column];
+            result = GetMatrix(row,column);
+            for (int c = 1; c < counter; c++) {
+                System.out.println("______" + "Matrix(" + (c + 1) + ")______");
+                int Matrix[][] = GetMatrix(row, column);
+                result = CalculatorMatrix.add(result,Matrix);
+            }
+            PrintMatrix(result);
             return;
         } else if (operation == '-') {
             System.out.println("Note: To add two matrices, the number of rows in the first determinant must be equal to the number of rows in the second determinant, as well as the number of columns.");
             System.out.println("How many matrices do you want to subtraction?");
-            int numbers=in.nextInt(); 
+            int counter = in.nextInt();
             System.out.print("row: ");
             int row = in.nextInt();
             System.out.print("column: ");
-            int column = in.nextInt(); 
-            int   result[][]=new int[row][column];
-           for(int c=0;c<numbers;c++){
-            System.out.println("______"+"Matrix("+(c+1)+")______");
-          int Matrix[][]= GetMatrix(row,column);
-         result = CalculatorMatrix.subtraction(Matrix,numbers);
-           }
-          PrintMatrix(result);
+            int column = in.nextInt();
+            System.out.println("______Matrix1______");
+            int result[][] = new int[row][column];
+            result = GetMatrix(row,column);
+            for (int c = 1; c < counter; c++) {
+                System.out.println("______" + "Matrix(" + (c + 1) + ")______");
+                int Matrix[][] = GetMatrix(row, column);
+                result = CalculatorMatrix.subtraction(result,Matrix);
+            }
+            PrintMatrix(result);
             return;
         } else if (operation == '*') {
             System.out.println("Note: To avoid error, when multiplying two matrices, the number of columns of the first matrix(column1) must be equal to the number of rows of the second matrix(row2). Thank you.");
@@ -134,76 +140,69 @@ public class Myproject {
         char operation;
         System.out.print("What is the type of operation? ['+' or '-' or '*' or '/' or power'^']: ");
         operation = in.next().charAt(0);
-        System.out.print("number2: ");
         switch (operation) {
             case '+': {
-                double sum=0;
+                double sum = 0;
                 System.out.print("How many numbers do you want to add?: ");
                 int counter = in.nextInt();
                 double number;
-                for(int i=1;i<=counter;i++)
-                {
-                   System.out.print("number "+i+":");
-                   number = in.nextDouble();
-                   sum=CalculatorDecimal.add(number, counter);
+                for (int i = 1; i <= counter; i++) {
+                    System.out.print("number " + i + ":");
+                    number = in.nextDouble();
+                    sum = CalculatorDecimal.add(number, counter);
                 }
-                System.out.println("result: "+sum);
+                System.out.println("result: " + sum);
                 return;
             }
             case '-': {
-                double sub=0;
+                double sub = 0;
                 System.out.print("How many numbers do you want to subtraction?: ");
                 int counter = in.nextInt();
                 double number;
-                for(int i=1;i<=counter;i++)
-                {
-                   System.out.print("number "+i+":");
-                   number = in.nextDouble();
-                   sub=CalculatorDecimal.sub(number, counter);
+                for (int i = 1; i <= counter; i++) {
+                    System.out.print("number " + i + ":");
+                    number = in.nextDouble();
+                    sub = CalculatorDecimal.sub(number, counter);
                 }
-                System.out.println("result: "+sub);
+                System.out.println("result: " + sub);
                 return;
             }
             case '*': {
-                double multi=0;
                 System.out.print("How many numbers do you want to multiply?: ");
                 int counter = in.nextInt();
-                double number;
-                for(int i=1;i<=counter;i++)
-                {
-                   System.out.print("number "+i+":");
-                   number = in.nextDouble();
-                   multi=CalculatorDecimal.multi(number, counter);
+                System.out.print("Number1: ");
+                double multi = in.nextDouble();
+                for (int i = 2; i <= counter; i++) {
+                    System.out.print("number " + i + ": ");
+                    double number = in.nextDouble();
+                    multi = CalculatorDecimal.multi(multi, number);
                 }
-                System.out.println("result: "+multi);
+                System.out.println("result: " + multi);
                 return;
             }
             case '/': {
-                double div=0;
                 System.out.print("How many numbers do you want to divide?: ");
                 int counter = in.nextInt();
-                double number=0;
-                for(int i=1;i<=counter;i++)
-                {
-                 if(number != 0){
-                   System.out.print("number "+i+":");
-                   number = in.nextDouble();
-                   div=CalculatorDecimal.div(number, counter);
-                 }
-                   else
-                  {
-                    System.out.println("invalid value , please try again");
-                  }
-                    return;
+                System.out.print("Number 1: ");
+                double div = in.nextDouble();
+                for (int i = 2; i <= counter; i++) {
+                    System.out.print("number " + i + ": ");
+                    double number = in.nextDouble();
+                    if (number != 0) {
+                        div = CalculatorDecimal.div(div,number);
+                    } else {
+                        System.out.println("invalid value , please try again");
+                        return;
+                    }
                 }
-                System.out.println("result: "+div);
+                System.out.println("result: " + div);
                 return;
             }
             case '^': {
-                System.out.println("Enter the number");
-                double number= in.nextDouble();
-                System.out.println("power"); 
-                int pow= in.nextInt();
+                System.out.print("Enter the number: ");
+                double number = in.nextDouble();
+                System.out.print("power: ");
+                int pow = in.nextInt();
                 System.out.println("result: " + CalculatorDecimal.pow(number, pow));
                 return;
             }
@@ -213,21 +212,4 @@ public class Myproject {
             }
         }
     }
-//    public static int [][] add_more_matrix(int [][] Matrix,int numberofmarices)
-//    {
-//         int SumMatrix [][] = new int[Matrix.length][Matrix[0].length];
-//        for(int a=0;a<numberofmarices;a++){
-//            for(int i=0;i< Matrix.length;i++){
-//                for(int j = 0; j < Matrix[0].length; j++){
-//                     SumMatrix[i][j]+= Matrix[i][j];  
-//                }
-//            }
-//            
-//        }
-//         return SumMatrix;
-//         
-//                 
-//    }    
-
-    
 }
